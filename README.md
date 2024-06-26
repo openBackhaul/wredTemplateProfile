@@ -5,13 +5,13 @@
 - 1.0.0-ts.d.t : Use case driven model for the Transport SDN at Telefonica Germany
 
 ### UML
-- to be provided
+- [WredTemplateProfile_1.0.0-ts.240626.1430](./WredTemplateProfile_1.0.0-ts.240626.1430.zip)
 
 ### Overview 
-- to be provided
+- [WredTemplateProfile_1.0.0-ts.240626.1430+overview.1](./WredTemplateProfile_1.0.0-ts.240626.1430+overview.1.png)
 
 ### GenDoc Export
-- to be provided
+- [WredTemplateProfile_1.0.0-ts.240626.1430+gendoc.1](./WredTemplateProfile_1.0.0-ts.240626.1430+gendoc.1.docx)
 
 ### Augmentation Condition
 - When statement in Augmentation statement demands for Profile::profileName==PROFILE_NAME_TYPE_WRED_TEMPLATE_PROFILE
