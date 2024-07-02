@@ -17,7 +17,7 @@
 - When statement in Augmentation statement demands for Profile::profileName==PROFILE_NAME_TYPE_WRED_TEMPLATE_PROFILE
 
 ### YANG File
-- to be provided
+- [WredTemplateProfile_1.0.0-ts.240626.1430+yang](./WredTemplateProfile_1.0.0-ts.240626.1430+yang/wred-template-profile-1-0.yang)
 
 ### JSON Schema
 - to be provided
