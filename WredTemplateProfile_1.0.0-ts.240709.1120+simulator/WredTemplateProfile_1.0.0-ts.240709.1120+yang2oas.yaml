@@ -16973,52 +16973,6 @@ paths:
         "400":
           description: Internal Error
           content: {}
-  /operations/apply-system-structure-state-defined-by-constraint/:
-    post:
-      summary: Create apply-system-structure-state-defined-by-constraint by ID
-      description: "Create operation of resource: apply-system-structure-state-defined-by-constraint"
-      operationId: create_apply-system-structure-state-defined-by-constraint_by_id
-      requestBody:
-        description: apply-system-structure-state-defined-by-constraintbody object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/apply-system-structure-state-defined-by-constraintRPC_input_schema'
-        required: true
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/apply-system-structure-state-defined-by-constraintRPC_output_schema'
-        "400":
-          description: Internal Error
-          content: {}
-      x-codegen-request-body-name: apply-system-structure-state-defined-by-constraint
-  /operations/retrieve-system-structure-defined-by-constraint/:
-    post:
-      summary: Create retrieve-system-structure-defined-by-constraint by ID
-      description: "Create operation of resource: retrieve-system-structure-defined-by-constraint"
-      operationId: create_retrieve-system-structure-defined-by-constraint_by_id
-      requestBody:
-        description: retrieve-system-structure-defined-by-constraintbody object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/retrieve-system-structure-defined-by-constraintRPC_input_schema'
-        required: true
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/retrieve-system-structure-defined-by-constraintRPC_output_schema'
-        "400":
-          description: Internal Error
-          content: {}
-      x-codegen-request-body-name: retrieve-system-structure-defined-by-constraint
   /operations/create-wred-template-profile/:
     post:
       summary: Create create-wred-template-profile by ID
@@ -18813,6 +18767,11 @@ components:
     add-or-modify-wred-profileRPC_input_schema:
       type: object
       properties:
+        wred-template-profile-to-be-modified:
+          type: string
+          description: UUID of the instance of WredTemplateProfile (ProfileNameType==PROFILE_NAME_TYPE_WRED_TEMPLATE_PROFILE)
+            that shall be modified.
+          x-path: /core-model:control-construct/core-model:profile-collection/core-model:profile/core-model:uuid
         affected-protocol:
           type: string
           description: "Definition of the kind of protocol, for which the WRED profile\
@@ -18873,6 +18832,11 @@ components:
     delete-wred-profileRPC_input_schema:
       type: object
       properties:
+        wred-template-profile-to-be-modified:
+          type: string
+          description: UUID of the instance of WredTemplateProfile (ProfileNameType==PROFILE_NAME_TYPE_WRED_TEMPLATE_PROFILE)
+            that shall be modified.
+          x-path: /core-model:control-construct/core-model:profile-collection/core-model:profile/core-model:uuid
         affected-protocol:
           type: string
           description: "Protocol, for which the WRED profile shall be deleted."

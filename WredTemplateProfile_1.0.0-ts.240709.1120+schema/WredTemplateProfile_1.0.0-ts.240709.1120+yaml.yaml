@@ -1,0 +1,274 @@
+/profile-collection:
+  type: object
+  required:
+    - core-model-1-4:profile-collection
+  properties:
+    core-model-1-4:profile-collection:
+      type: object
+      required:
+        - profile
+      properties:
+        profile:
+          type: array
+          minItems: 1
+          x-key: uuid
+          items:
+            allOf:
+              - description: 'Profile class'
+                type: object
+                required:
+                  - uuid
+                  - profile-name
+                properties:
+                  profile-name:
+                    type: string
+                  external-managed-id:
+                    type: object
+                    properties:
+                      manager-identifier:
+                        type: string
+                      external-managed-uuid:
+                        type: string
+                  local-id:
+                    type: string
+                  uuid:
+                    type: string
+                  name:
+                    type: array
+                  label:
+                    type: array
+                  extension:
+                    type: array
+                  operational-state:
+                    type: string
+                    enum:
+                      - 'core-model-1-4:OPERATIONAL_STATE_DISABLED'
+                      - 'core-model-1-4:OPERATIONAL_STATE_ENABLED'
+                  administrative-control:
+                    type: string
+                  administrative-state:
+                    type: string
+                  lifecycle-state:
+                    type: string
+                  address:
+                    type: array
+              - description: 'Technology specific augments'
+                oneOf:
+                  - description: 'WredTemplateProfile'
+                    type: object
+                    required:
+                      - wred-template-profile-1-0:wred-template-profile-pac
+                    properties:
+                      wred-template-profile-1-0:wred-template-profile-pac:
+                        type: object
+                        required:
+                          - wred-template-profile-capability
+                          - wred-template-profile-configuration
+                        properties:
+                          wred-template-profile-capability:
+                            $ref: '#/components/schemas/wred-template-profile-capability'
+                          wred-template-profile-configuration:
+                            $ref: '#/components/schemas/wred-template-profile-configuration'
+
+/profile-collection/profile={uuid}:
+  type: object
+  required:
+    - core-model-1-4:profile
+  properties:
+    core-model-1-4:profile:
+      type: array
+      minItems: 1
+      items:
+        allOf:
+          - description: 'Profile class'
+            type: object
+            required:
+              - uuid
+              - profile-name
+            properties:
+              profile-name:
+                type: string
+              external-managed-id:
+                type: object
+                properties:
+                  manager-identifier:
+                    type: string
+                  external-managed-uuid:
+                    type: string
+              local-id:
+                type: string
+              uuid:
+                type: string
+              name:
+                type: array
+              label:
+                type: array
+              extension:
+                type: array
+              operational-state:
+                type: string
+                enum:
+                  - 'core-model-1-4:OPERATIONAL_STATE_DISABLED'
+                  - 'core-model-1-4:OPERATIONAL_STATE_ENABLED'
+              administrative-control:
+                type: string
+              administrative-state:
+                type: string
+              lifecycle-state:
+                type: string
+              address:
+                type: array
+          - description: 'Technology specific augments'
+            oneOf:
+              - description: 'WredTemplateProfile'
+                type: object
+                required:
+                  - wred-template-profile-1-0:wred-template-profile-pac
+                properties:
+                  wred-template-profile-1-0:wred-template-profile-pac:
+                    type: object
+                    required:
+                      - wred-template-profile-capability
+                      - wred-template-profile-configuration
+                    properties:
+                      wred-template-profile-capability:
+                        $ref: '#/components/schemas/wred-template-profile-capability'
+                      wred-template-profile-configuration:
+                        $ref: '#/components/schemas/wred-template-profile-configuration'
+
+/profile-collection/profile={uuid}/wred-template-profile-pac/wred-template-profile-capability:
+  type: object
+  required:
+    - wred-template-profile-1-0:wred-template-profile-capability
+  properties:
+    wred-template-profile-1-0:wred-template-profile-capability:
+      type: object
+      required:
+        - available-buffer-size
+        - drop-probability-at-threshold-low-is-avail
+        - gentle-wred-is-avail
+        - sensitivity-setting-is-avail
+        - coloring-is-avail
+      properties:
+        available-buffer-size:
+          type: integer
+          format: int32
+        drop-probability-at-threshold-low-is-avail:
+          type: boolean
+        gentle-wred-is-avail:
+          type: boolean
+        sensitivity-setting-is-avail:
+          type: boolean
+        coloring-is-avail:
+          type: boolean
+        supported-wred-protocol-list:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            enum:
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_NONE'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_ETHERNET_MAC'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_VLAN'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_Q_IN_Q'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_MPLS'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_IPV4'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_IPV6'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_TCP'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_UDP'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_RTP'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_GTP_U'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_OTHERS'
+              - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_NOT_YET_DEFINED'
+        available-drop-precedence-kind-list:
+          type: array
+          minItems: 0
+          items:
+            type: string
+            enum:
+              - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_ALL'
+              - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_LOW'
+              - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_MEDIUM'
+              - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_HIGH'
+              - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_NOT_YET_DEFINED'
+
+/profile-collection/profile={uuid}/wred-template-profile-pac/wred-template-profile-configuration:
+  type: object
+  required:
+    - wred-template-profile-1-0:wred-template-profile-configuration
+  properties:
+    wred-template-profile-1-0:wred-template-profile-configuration:
+      type: object
+      properties:
+        wred-template-list:
+          type: array
+          minItems: 0
+          x-key: affected-protocol affected-drop-precedence
+          items:
+            type: object
+            required:
+              - affected-protocol
+              - affected-drop-precedence
+              - wred-configuration
+            properties:
+              affected-protocol:
+                type: string
+                enum:
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_NONE'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_ETHERNET_MAC'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_VLAN'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_Q_IN_Q'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_MPLS'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_IPV4'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_IPV6'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_TCP'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_UDP'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_RTP'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_GTP_U'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_OTHERS'
+                  - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_NOT_YET_DEFINED'
+              affected-drop-precedence:
+                type: string
+                enum:
+                  - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_ALL'
+                  - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_LOW'
+                  - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_MEDIUM'
+                  - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_HIGH'
+                  - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_NOT_YET_DEFINED'
+              wred-configuration:
+                type: object
+                required:
+                  - external-label
+                  - threshold-low
+                  - drop-probability-at-threshold-low
+                  - threshold-high
+                  - drop-probability-at-threshold-high
+                  - gentle-wred-is-on
+                  - threshold-gentle
+                  - sensitivity
+                  - coloring-is-on
+                properties:
+                  external-label:
+                    type: string
+                  threshold-low:
+                    type: integer
+                    format: int32
+                  drop-probability-at-threshold-low:
+                    type: integer
+                    format: int8
+                  threshold-high:
+                    type: integer
+                    format: int32
+                  drop-probability-at-threshold-high:
+                    type: integer
+                    format: int8
+                  gentle-wred-is-on:
+                    type: boolean
+                  threshold-gentle:
+                    type: integer
+                    format: int32
+                  sensitivity:
+                    type: integer
+                    format: int8
+                  coloring-is-on:
+                    type: boolean
