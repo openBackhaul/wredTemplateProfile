@@ -27,20 +27,19 @@
 - [WredTemplateProfile_1.0.0-ts.240709.1120+schema](./WredTemplateProfile_1.0.0-ts.240709.1120+schema/)
 
 ### Interface Simulator
-- [WredTemplateProfile_1.0.0-ts.240709.1120+simulator](./WredTemplateProfile_1.0.0-ts.240709.1120+simulator/)
+- [WredTemplateProfile_1.0.0-ts.240709.1120+simulator](./WredTemplateProfile_1.0.0-ts.240709.1120+simu/)
 
 ### Interface Validator
-- [WredTemplateProfile_1.0.0-ts.240709.1120+validator](./WredTemplateProfile_1.0.0-ts.240709.1120+validator/)
+- [WredTemplateProfile_1.0.0-ts.240709.1120+validator](./WredTemplateProfile_1.0.0-ts.240709.1120+vali/)
 
 ### Publication
 - Candidate for future LinuxFoundation Specification  
 
-### Aspired Model Classification
-- Live Network
+### Model Classification
+- Qualified for Live Network
 
 ### Open Issue List
 - [wredTemplateProfile/issues](../../issues)
 
 ### Comments
 ./.
-

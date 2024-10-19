@@ -1,142 +1,4 @@
-/profile-collection:
-  type: object
-  required:
-    - core-model-1-4:profile-collection
-  properties:
-    core-model-1-4:profile-collection:
-      type: object
-      required:
-        - profile
-      properties:
-        profile:
-          type: array
-          minItems: 1
-          x-key: uuid
-          items:
-            allOf:
-              - description: 'Profile class'
-                type: object
-                required:
-                  - uuid
-                  - profile-name
-                properties:
-                  profile-name:
-                    type: string
-                  external-managed-id:
-                    type: object
-                    properties:
-                      manager-identifier:
-                        type: string
-                      external-managed-uuid:
-                        type: string
-                  local-id:
-                    type: string
-                  uuid:
-                    type: string
-                  name:
-                    type: array
-                  label:
-                    type: array
-                  extension:
-                    type: array
-                  operational-state:
-                    type: string
-                    enum:
-                      - 'core-model-1-4:OPERATIONAL_STATE_DISABLED'
-                      - 'core-model-1-4:OPERATIONAL_STATE_ENABLED'
-                  administrative-control:
-                    type: string
-                  administrative-state:
-                    type: string
-                  lifecycle-state:
-                    type: string
-                  address:
-                    type: array
-              - description: 'Technology specific augments'
-                oneOf:
-                  - description: 'WredTemplateProfile'
-                    type: object
-                    required:
-                      - wred-template-profile-1-0:wred-template-profile-pac
-                    properties:
-                      wred-template-profile-1-0:wred-template-profile-pac:
-                        type: object
-                        required:
-                          - wred-template-profile-capability
-                          - wred-template-profile-configuration
-                        properties:
-                          wred-template-profile-capability:
-                            $ref: '#/components/schemas/wred-template-profile-capability'
-                          wred-template-profile-configuration:
-                            $ref: '#/components/schemas/wred-template-profile-configuration'
-
-/profile-collection/profile={uuid}:
-  type: object
-  required:
-    - core-model-1-4:profile
-  properties:
-    core-model-1-4:profile:
-      type: array
-      minItems: 1
-      items:
-        allOf:
-          - description: 'Profile class'
-            type: object
-            required:
-              - uuid
-              - profile-name
-            properties:
-              profile-name:
-                type: string
-              external-managed-id:
-                type: object
-                properties:
-                  manager-identifier:
-                    type: string
-                  external-managed-uuid:
-                    type: string
-              local-id:
-                type: string
-              uuid:
-                type: string
-              name:
-                type: array
-              label:
-                type: array
-              extension:
-                type: array
-              operational-state:
-                type: string
-                enum:
-                  - 'core-model-1-4:OPERATIONAL_STATE_DISABLED'
-                  - 'core-model-1-4:OPERATIONAL_STATE_ENABLED'
-              administrative-control:
-                type: string
-              administrative-state:
-                type: string
-              lifecycle-state:
-                type: string
-              address:
-                type: array
-          - description: 'Technology specific augments'
-            oneOf:
-              - description: 'WredTemplateProfile'
-                type: object
-                required:
-                  - wred-template-profile-1-0:wred-template-profile-pac
-                properties:
-                  wred-template-profile-1-0:wred-template-profile-pac:
-                    type: object
-                    required:
-                      - wred-template-profile-capability
-                      - wred-template-profile-configuration
-                    properties:
-                      wred-template-profile-capability:
-                        $ref: '#/components/schemas/wred-template-profile-capability'
-                      wred-template-profile-configuration:
-                        $ref: '#/components/schemas/wred-template-profile-configuration'
-
-/profile-collection/profile={uuid}/wred-template-profile-pac/wred-template-profile-capability:
+/profile-collection/profile={uuid}/wred-template-profile-1-0:wred-template-profile-pac/wred-template-profile-capability:
   type: object
   required:
     - wred-template-profile-1-0:wred-template-profile-capability
@@ -149,6 +11,8 @@
         - gentle-wred-is-avail
         - sensitivity-setting-is-avail
         - coloring-is-avail
+        - supported-wred-protocol-list
+        - available-drop-precedence-kind-list
       properties:
         available-buffer-size:
           type: integer
@@ -163,7 +27,7 @@
           type: boolean
         supported-wred-protocol-list:
           type: array
-          minItems: 0
+          minItems: 1
           items:
             type: string
             enum:
@@ -182,7 +46,7 @@
               - 'wred-template-profile-1-0:PROTOCOL_LAYER_TYPE_NOT_YET_DEFINED'
         available-drop-precedence-kind-list:
           type: array
-          minItems: 0
+          minItems: 1
           items:
             type: string
             enum:
@@ -192,7 +56,7 @@
               - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_HIGH'
               - 'wred-template-profile-1-0:DROP_PRECEDENCE_TYPE_NOT_YET_DEFINED'
 
-/profile-collection/profile={uuid}/wred-template-profile-pac/wred-template-profile-configuration:
+/profile-collection/profile={uuid}/wred-template-profile-1-0:wred-template-profile-pac/wred-template-profile-configuration:
   type: object
   required:
     - wred-template-profile-1-0:wred-template-profile-configuration
@@ -272,3 +136,23 @@
                     format: int8
                   coloring-is-on:
                     type: boolean
+
+/wred-template-profile-1-0:create-wred-template-profile:
+  type: object
+  required:
+    - wred-template-profile-1-0:output
+  properties:
+    wred-template-profile-1-0:output:
+      type: object
+      required:
+        - created-wred-template-profile
+      properties:
+        created-wred-template-profile:
+          type: string
+
+/wred-template-profile-1-0:add-or-modify-wred-profile:
+
+/wred-template-profile-1-0:delete-wred-profile:
+
+/wred-template-profile-1-0:delete-wred-template-profile:
+
